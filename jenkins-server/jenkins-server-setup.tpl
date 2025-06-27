@@ -54,14 +54,20 @@ sudo mv ./kubectl /usr/local/bin/
 # Install tfsec
 curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/install_linux.sh | bash
 
+#Changing jenkins_home directory ownership
+mkdir /home/ec2-user/jenkins_home
+sudo chown ec2-user /home/ec2-user/jenkins_home
+sudo chgrp ec2-user /home/ec2-user/jenkins_home
+echo "===> Ownership for jenkins_home has been changed" >> /home/ec2-user/setup.log
+
 # clone the jcasc git repo
-cd /home/ec2-user
+cd /home/ec2-user &&
 sudo git clone https://github.com/Viren57/jenkins-casc.git && 
 sudo chown ec2-user /home/ec2-user/jenkins-casc &&
 sudo chgrp ec2-user /home/ec2-user/jenkins-casc &&
-echo "JCASC repo has been cloned" >> /home/ec2-user/setup.log
+echo "===> JCASC repo has been cloned" >> /home/ec2-user/setup.log
 
-cd /home/ec2-user
+
 # Create docker-compose file
 cat <<EOF | sudo tee docker-compose.yaml > /dev/null
 version: '3'
@@ -75,10 +81,14 @@ services:
       - "9090:8080"
     environment:
       - JENKINS_ADMIN_PASSWORD=${jenkins_admin_password} 
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
     restart: always
 EOF
+echo "===> File docker-compose.yaml has been created" >> /home/ec2-user/setup.log
 
 # Start Jenkins container
 sudo docker compose down
 sudo docker compose build --no-cache
 sudo docker compose up -d
+echo "===> Docker image has been created & Jenkins container has been launched" >> /home/ec2-user/setup.log
