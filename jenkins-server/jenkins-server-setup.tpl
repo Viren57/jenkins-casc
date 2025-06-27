@@ -81,8 +81,9 @@ services:
       - "9090:8080"
     environment:
       - JENKINS_ADMIN_PASSWORD=${jenkins_admin_password} 
-    volumes:
-      - ./jenkins_home:/var/jenkins_home
+      - CASC_JENKINS_CONFIG=/var/jenkins_home/jenkins.yaml
+    # volumes:
+    #   - ./jenkins_home:/var/jenkins_home
     restart: always
 EOF
 echo "===> File docker-compose.yaml has been created" >> /home/ec2-user/setup.log
