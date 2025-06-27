@@ -40,11 +40,11 @@ jenkins:
         password: ${JENKINS_ADMIN_PASSWORD}
         name: "Virender Kumar Nain"
         properties:
-        - "apiToken"
         - "consoleUrlProvider"
         - "myView"
         - "timezone"
         - "experimentalFlags"
+        - "apiToken"
   slaveAgentPort: -1
   updateCenter:
     sites:
@@ -73,6 +73,7 @@ unclassified:
     storage: "file"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "http://54.247.211.99:8080/"
   pollSCM:
     pollingThreadCount: 10
 tool:
