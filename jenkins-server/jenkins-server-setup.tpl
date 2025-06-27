@@ -81,7 +81,6 @@ services:
     environment:
       - JENKINS_ADMIN_PASSWORD=${jenkins_admin_password} 
       - CASC_JENKINS_CONFIG=/var/jenkins_home/jenkins.yaml
-      - JENKINS_INSTALL_RUN_SETUP_WIZARD=false
     # volumes:
     #   - ./jenkins_home:/var/jenkins_home
     restart: always
