@@ -1,6 +1,6 @@
 #!/bin/bash
-echo "Jenkins admin password: ${jenkins_admin_password}" >> /home/ec2-user/setup.log
-exec > /home/ec2-user/setup.log 2>&1
+echo "Jenkins admin password: ${jenkins_admin_password}" >> /home/ec2-user/jenkins_home/setup.log
+exec > /home/ec2-user/jenkins_home/setup.log 2>&1
 set -x
 # Update system
 sudo yum update -y
@@ -55,14 +55,14 @@ sudo mv ./kubectl /usr/local/bin/
 curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/install_linux.sh | bash
 
 # clone the jcasc git repo
-cd /home/ec2-user/
+cd /home/ec2-user/jenkins_home
 sudo git clone https://github.com/Viren57/jenkins-casc.git && 
-sudo chown ec2-user /home/ec2-user/jenkins-casc &&
-sudo chgrp ec2-user /home/ec2-user/jenkins-casc &&
+sudo chown ec2-user /home/ec2-user/jenkins_home/jenkins-casc &&
+sudo chgrp ec2-user /home/ec2-user/jenkins_home/jenkins-casc &&
 echo "JCASC repo has been cloned" >> /home/ec2-user/setup.log
 
 # Create docker-compose file
-cat <<EOF | sudo tee /home/ec2-user/docker-compose.yaml > /dev/null
+cat <<EOF | sudo tee /home/ec2-user/jenkins_home/jenkins_casc/docker-compose.yaml > /dev/null
 version: '3'
 services:
   jenkins:
