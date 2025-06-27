@@ -63,15 +63,16 @@ sudo chown ec2-user /home/ec2-user/jenkins_home/jenkins-casc &&
 sudo chgrp ec2-user /home/ec2-user/jenkins_home/jenkins-casc &&
 echo "JCASC repo has been cloned" >> /home/ec2-user/setup.log
 
+cd /home/ec2-user/jenkins_home/jenkins_casc
 # Create docker-compose file
-cat <<EOF | sudo tee /home/ec2-user/jenkins_home/jenkins_casc/docker-compose.yaml > /dev/null
+cat <<EOF | sudo tee docker-compose.yaml > /dev/null
 version: '3'
 services:
   jenkins:
     container_name: jenkins-server
     image: jenkins
     build:
-      context: ./jenkins_casc/jenkins_casc.yaml
+      context: ./jenkins_casc
     ports:
       - "9090:8080"
     volumes:
