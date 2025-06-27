@@ -74,7 +74,6 @@ version: '3'
 services:
   jenkins:
     container_name: jenkins-server
-    image: jenkins
     build:
       context: ./jenkins-casc
     ports:
