@@ -55,6 +55,7 @@ sudo mv ./kubectl /usr/local/bin/
 curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/install_linux.sh | bash
 
 # clone the jcasc git repo
+cd /home/ec2-user
 sudo git clone https://github.com/Viren57/jenkins-casc.git && 
 sudo chown ec2-user /home/ec2-user/jenkins-casc &&
 sudo chgrp ec2-user /home/ec2-user/jenkins-casc &&
