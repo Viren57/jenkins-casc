@@ -73,8 +73,6 @@ services:
       context: ./jenkins_casc
     ports:
       - "9090:8080"
-    volumes:
-      - ./jenkins_casc/jenkins_casc.yaml:/var/jenkins_casc.yaml
     environment:
       - JENKINS_ADMIN_PASSWORD=${jenkins_admin_password} 
     restart: always
