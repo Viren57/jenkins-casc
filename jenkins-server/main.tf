@@ -6,7 +6,10 @@ resource "aws_instance" "jenkins-server" {
   vpc_security_group_ids = [aws_default_security_group.default-sg.id]
   availability_zone = var.availability_zone
   associate_public_ip_address = true
-  user_data = file("jenkins-server-setup.sh", jenkins_admin_password = "password")
+  # user_data = file("jenkins-server-setup.sh", (jenkins_admin_password = "password"))
+  user_data = templatefile("jenkins-server-setup.tpl", {
+  jenkins_admin_password = "password"
+})
   connection {
     type        = "ssh"
     user        = var.ec2_user

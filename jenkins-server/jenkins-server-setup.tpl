@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo "Jenkins admin password: ${jenkins_admin_password}" >> /home/ec2-user/setup.log
 exec > /home/ec2-user/setup.log 2>&1
 set -x
 # Update system
@@ -69,7 +69,7 @@ services:
     container_name: jenkins-server
     image: jenkins
     build:
-      context: ./jenkins-casc
+      context: ./jenkins_casc.yaml
     ports:
       - "9090:8080"
     volumes:
