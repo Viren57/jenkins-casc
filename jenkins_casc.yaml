@@ -73,7 +73,7 @@ unclassified:
     storage: "file"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "http://52.210.72.56:8080/"
+    url: "http://52.208.165.43:8080/"
   pollSCM:
     pollingThreadCount: 10
 tool:
