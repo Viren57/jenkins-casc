@@ -11,5 +11,7 @@ COPY jenkins_casc.yaml /var/jenkins_home/jenkins.yaml
 
 # Set the environment variable so Jenkins knows to use it
 ENV CASC_JENKINS_CONFIG=/var/jenkins_home/jenkins.yaml
+ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
+
 
 USER jenkins
