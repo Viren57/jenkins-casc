@@ -1,4 +1,6 @@
 #!/bin/bash
+sudo mkdir -p /home/ec2-user/jenkins_home
+sudo chown 1000:1000 /home/ec2-user/jenkins_home
 echo "Jenkins admin password: ${jenkins_admin_password}" >> /home/ec2-user/jenkins_home/setup.log
 exec > /home/ec2-user/jenkins_home/setup.log 2>&1
 set -x
@@ -69,7 +71,7 @@ services:
     container_name: jenkins-server
     image: jenkins
     build:
-      context: ./jenkins_casc.yaml
+      context: ./jenkins_casc/jenkins_casc.yaml
     ports:
       - "9090:8080"
     volumes:
@@ -81,8 +83,6 @@ services:
 EOF
 
 # Start Jenkins container
-sudo mkdir -p /home/ec2-user/jenkins_home
-sudo chown 1000:1000 /home/ec2-user/jenkins_home
 sudo docker compose down
 sudo docker compose up -d
 
