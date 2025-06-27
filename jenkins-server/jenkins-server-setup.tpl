@@ -76,7 +76,7 @@ services:
     container_name: jenkins-server
     image: jenkins
     build:
-      context: ./jenkins_casc
+      context: ./jenkins-casc
     ports:
       - "9090:8080"
     environment:
